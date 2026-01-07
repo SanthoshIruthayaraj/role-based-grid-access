@@ -1,8 +1,8 @@
-@import '@syncfusion/ej2-base/styles/bootstrap5.3.css';  
-@import '@syncfusion/ej2-buttons/styles/bootstrap5.3.css';  
-@import '@syncfusion/ej2-calendars/styles/bootstrap5.3.css';  
-@import '@syncfusion/ej2-dropdowns/styles/bootstrap5.3.css';  
-@import '@syncfusion/ej2-inputs/styles/bootstrap5.3.css';  
+@import '@syncfusion/ej2-base/styles/bootstrap5.3.css';
+@import '@syncfusion/ej2-buttons/styles/bootstrap5.3.css';
+@import '@syncfusion/ej2-calendars/styles/bootstrap5.3.css';
+@import '@syncfusion/ej2-dropdowns/styles/bootstrap5.3.css';
+@import '@syncfusion/ej2-inputs/styles/bootstrap5.3.css';
 @import '@syncfusion/ej2-navigations/styles/bootstrap5.3.css';
 @import '@syncfusion/ej2-popups/styles/bootstrap5.3.css';
 @import '@syncfusion/ej2-splitbuttons/styles/bootstrap5.3.css';
@@ -46,11 +46,37 @@ body {
   width: min(480px, 100%);
 }
 
+.form-field-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.form-label-inline {
+  width: 80px;
+  margin-bottom: 0;
+  font-weight: 500;
+  text-align: left;
+}
+
+.form-field-inline .e-input-group,
+.form-field-inline .e-input-group.e-control-wrapper {
+  flex: 1;
+}
+
 .chip-rounded {
   border-radius: 9999px !important;
 }
 
-/* Profile trigger */
+.grid-chip-center {
+  display: flex;
+  justify-content: center;
+}
+
+.grid-chip-center .e-chip-list {
+  justify-content: center;
+}
+
 .profile-menu-wrapper {
   position: relative;
 }
@@ -95,7 +121,6 @@ body {
   transform: rotate(-180deg);
 }
 
-/* Profile dropdown */
 .profile-menu {
   position: absolute;
   right: 0;
@@ -127,42 +152,6 @@ body {
   color: rgba(15, 23, 42, 0.55);
 }
 
-.profile-menu__badge {
-  margin-top: 0.25rem;
-}
-
-.profile-menu__badge-icon {
-  display: inline-block;
-  width: 18px;
-  height: 16px;
-  border-radius: 3px;
-  border: 1px solid rgba(15, 23, 42, 0.25);
-}
-
-.icon-button {
-  border: none;
-  background: transparent;
-  color: #94a3b8;
-  padding: 0.25rem;
-}
-
-.icon-button:hover {
-  color: #1f2937;
-}
-
-.gear-icon,
-.logout-icon {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.gear-icon {
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='3'/><path d='M19.4 15A1.65 1.65 0 0018 16.6V20a2 2 0 01-2 2h-2.4a1.65 1.65 0 00-1.4.6l-1.6 2a2 2 0 01-3.2 0l-1.6-2a1.65 1.65 0 00-1.4-.6H4a2 2 0 01-2-2v-3.4A1.65 1.65 0 00.6 15L-1 13.4a2 2 0 010-3.2L.6 9A1.65 1.65 0 002 7.4V4a2 2 0 012-2h3.4A1.65 1.65 0 008 1.6L9.4 0a2 2 0 013.2 0L14.6 1.6c.31.19.65.3 1 .3H19a2 2 0 012 2v3.4A1.65 1.65 0 0022.4 9l1.6 1.6a2 2 0 010 3.2L22.4 15z'/%3E%3C/svg%3E");
-}
-
 .profile-card {
   display: flex;
   gap: 0.75rem;
@@ -177,13 +166,13 @@ body {
   background: #eff4ff;
   color: #215bff;
   display: flex;
-  align-items: center;
+  alignments: center;
   justify-content: center;
   font-size: 1.35rem;
   font-weight: 600;
 }
 
-.profile-info__name {
+profile-info__name {
   font-weight: 600;
   color: #111827;
 }
@@ -223,7 +212,6 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .profile-action:hover {

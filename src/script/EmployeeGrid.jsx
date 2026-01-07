@@ -47,14 +47,15 @@ export default function EmployeeGrid({
     const chipClass = props?.active ? "e-success" : "e-danger";
 
     return (
-      <ChipListComponent
-        cssClass={`${chipClass} chip-rounded`}
-        chips={[{ text: chipText }]}
-      />
+      <div className="grid-chip-center">
+        <ChipListComponent
+          cssClass={`${chipClass} chip-rounded`}
+          chips={[{ text: chipText }]}
+        />
+      </div>
     );
   };
 
-  // Enhance the base column definitions with role-specific editing rules.
   const columnDefs = useMemo(() => {
     const baseColumns = Array.isArray(columns) ? columns : [];
     return baseColumns.map((col) => {
@@ -100,7 +101,6 @@ export default function EmployeeGrid({
     });
   }, [columns, currentRole]);
 
-  // Build toolbar permissions from the role map.
   const toolbarItems = useMemo(() => {
     const config = roleConfig[currentRole] ?? roleConfig.Employee;
     const items = [];
@@ -124,7 +124,6 @@ export default function EmployeeGrid({
     };
   }, [currentRole, roleConfig]);
 
-  // Toggle column visibility whenever the role changes.
   useEffect(() => {
     const gridInstance = gridRef.current;
     if (!gridInstance) return;

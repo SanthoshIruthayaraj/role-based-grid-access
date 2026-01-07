@@ -39,8 +39,8 @@ export default function Login({ onLogin }) {
           <h2 className="card-title text-center mb-4">Sign in</h2>
 
           <form className="d-grid gap-3" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="userId" className="form-label">
+            <div className="form-field-inline">
+              <label htmlFor="userId" className="form-label form-label-inline">
                 User ID
               </label>
               <TextBoxComponent
@@ -56,8 +56,8 @@ export default function Login({ onLogin }) {
               />
             </div>
 
-            <div>
-              <label htmlFor="password" className="form-label">
+            <div className="form-field-inline">
+              <label htmlFor="password" className="form-label form-label-inline">
                 Password
               </label>
               <TextBoxComponent
