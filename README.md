@@ -55,6 +55,21 @@ This file centralizes every grid-specific rule:
 - `columns`: the schema shared by all roles. Each column object defines field name, header text, editor type, formatting, alignment, primary key status, and whether editing is allowed.
 - `DEMO_ACCOUNTS`: the predefined login users (mirroring the credential list above) used by `Login.jsx` to validate the credential form.
 
+## Setup & Run
+Follow these steps to set up and run the application:
+- Install dependencies
+  ```bash
+    npm install
+  ```
+- Start the development server
+  ```bash
+    npm start
+  ```
+- View in Browser
+  ```bash
+    http://localhost:3000/
+  ```
+  
 ## User Experience Flow
 
 Users choose a role on the login screen; the app auto-populates credentials for convenience as it is a demo application. Once logged in, a navbar displays the app title and current user details. The main view presents the Syncfusion React Grid, which immediately reflects the role’s allowed columns and actions. Logging out from the profile menu returns the user to the login screen.
