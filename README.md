@@ -5,9 +5,9 @@ This React application demonstrates Role Based Access Control (RBAC) for viewing
 Use any of the predefined accounts (listed below and sourced from `src/data/grid-config.js`) to explore the role-specific experience: 
 | Role     | User ID  | Password     | Notes                              |
 |----------|----------|--------------|------------------------------------|
-| Admin    | `admin`  | `admin123`   | Full CRUD plus all grid columns.   |
-| Manager  | `manager`| `manager123` | Edit-only access with key columns. |
-| Employee | `employee`| `employee123`| Read-only view of essential fields.|
+| Admin    | `lucas`  | `sunset42`   | Full CRUD plus all grid columns.   |
+| Manager  | `mia`| `harbor78` | Edit-only access with key columns. |
+| Employee | `oliver`| `meadow25`| Read-only view of essential fields.|
 
 ## Key Capabilities
 

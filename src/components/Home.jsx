@@ -1,22 +1,21 @@
 import React, { useMemo, useState } from 'react';
-import { ROLE_CONFIG, columns as baseColumns } from '../data/grid-config';
+import { ROLE_CONFIG, columns as baseColumns } from '../common/grid-config';
 import { generateEmployees } from '../data/data-source';
 import Login from './Login';
 import EmployeeGrid from './EmployeeGrid';
 import Navbar from './Navbar';
+import '../styles/Home.css';
 
-const APPLICATION_TITLE = 'Employee Management Console';
+const APPLICATION_TITLE = 'SummitBridge Workforce Portal';
 
 export default function Home() {
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Hide the confidential notes column for all users.
   const columns = useMemo(
     () => baseColumns.filter((c) => c.field !== 'notes'),
     []
   );
 
-  // Create a deterministic dataset for the demo session.
   const employeeData = useMemo(() => generateEmployees(100), []);
 
   const handleLogin = ({ role, userId }) => {
@@ -28,7 +27,7 @@ export default function Home() {
   };
 
   return (
-    <div className="app-shell">
+    <div className="app-container">
       {!currentUser ? (
         <Login onLogin={handleLogin} />
       ) : (

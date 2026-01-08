@@ -10,11 +10,14 @@ import {
   Edit,
   Toolbar,
 } from "@syncfusion/ej2-react-grids";
-import { RatingComponent } from "@syncfusion/ej2-react-inputs";
+  import {
+  RatingComponent,
+  MaskedTextBoxComponent,
+} from "@syncfusion/ej2-react-inputs";
 import { ChipListComponent } from "@syncfusion/ej2-react-buttons";
+import '../styles/EmployeeGrid.css';
 
-const filterSettings = { type: "Menu" };
-const pageSettings = { pageSize: 20 };
+const CONTACT_MASK = "(000) 000-0000";
 
 export default function EmployeeGrid({
   data,
@@ -24,20 +27,27 @@ export default function EmployeeGrid({
 }) {
   const gridRef = useRef(null);
 
+  const filterSettings = { type: "Menu" };
+  const pageSettings = { pageSize: 20 };
+
   const EmailTemplate = (props) => (
-    <a href={`mailto:${props.email}`}>{props.email}</a>
+    <div className="cell-template email-template">
+      <a href={`mailto:${props.email}`}>{props.email}</a>
+    </div>
   );
 
   const RatingTemplate = (props) => {
     const value = Number(props?.rating) || 0;
     return (
-      <div
-        style={{
-          transform: "scale(0.5)",
-          transformOrigin: "left center",
-        }}
-      >
-        <RatingComponent value={value} readOnly={true} />
+      <div className="cell-template rating-template">
+        <div
+          style={{
+            transform: "scale(0.5)",
+            transformOrigin: "left center",
+          }}
+        >
+          <RatingComponent value={value} readOnly={true} />
+        </div>
       </div>
     );
   };
@@ -47,18 +57,44 @@ export default function EmployeeGrid({
     const chipClass = props?.active ? "e-success" : "e-danger";
 
     return (
-      <div className="grid-chip-center">
-        <ChipListComponent
-          cssClass={`${chipClass} chip-rounded`}
-          chips={[{ text: chipText }]}
+      <div className="cell-template status-template">
+        <div className="grid-chip-center">
+          <ChipListComponent
+            cssClass={`${chipClass} chip-rounded`}
+            chips={[{ text: chipText }]}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const ContactEditTemplate = (props) => {
+    const value = props?.rowData?.contact ?? props?.contact ?? "";
+    const handleChange = (args) => {
+      const nextValue = args?.value ?? "";
+      if (props?.rowData) {
+        props.rowData.contact = nextValue;
+      } else if (props) {
+        props.contact = nextValue;
+      }
+    };
+
+    return (
+      <div className="cell-template contact-edit-template">
+        <MaskedTextBoxComponent
+          mask={CONTACT_MASK}
+          value={value}
+          placeholder="(555) 123-4567"
+          width="100%"
+          change={handleChange}
         />
       </div>
     );
   };
 
   const columnDefs = useMemo(() => {
-    const baseColumns = Array.isArray(columns) ? columns : [];
-    return baseColumns.map((col) => {
+    const baseCols = Array.isArray(columns) ? columns : [];
+    return baseCols.map((col) => {
       if (col.field === "email") {
         return { ...col, template: EmailTemplate };
       }
@@ -94,7 +130,16 @@ export default function EmployeeGrid({
           template: ActiveTemplate,
         };
       }
-      if (currentRole === "Manager" && !["rating", "contact"].includes(col.field)) {
+      if (col.field === "contact") {
+        return {
+          ...col,
+          editTemplate: ContactEditTemplate,
+        };
+      }
+      if (
+        currentRole === "Manager" &&
+        !["rating", "contact"].includes(col.field)
+      ) {
         return { ...col, allowEditing: false };
       }
       return col;
@@ -153,6 +198,7 @@ export default function EmployeeGrid({
             editSettings={gridEditSettings}
             filterSettings={filterSettings}
             pageSettings={pageSettings}
+            clipMode={'EllipsisWithTooltip'}
           >
             <ColumnsDirective>
               {columnDefs.map((column) => (
